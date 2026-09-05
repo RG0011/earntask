@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="EarnTask — complete verified tasks and request rewards."><meta name="theme-color" content="#146c50"><title>EarnTask — Genuine Task Rewards</title>
+<style>
+.adbox{margin-bottom:18px;border:1px dashed #cbd6d1;border-radius:14px;background:#fafcfb;padding:12px;text-align:center;color:#77817d;font-size:12px}.adbox div{font-size:13px;color:#53605a;margin:5px 0}.adbox small{font-size:11px}.footer{max-width:1050px;margin:-55px auto 85px;padding:20px 16px;color:#71807a;text-align:center;font-size:13px}.footerlinks{display:flex;justify-content:center;gap:16px;margin:9px 0}.footerlinks button{background:none;color:var(--g);font-weight:700}.footer small{display:block;line-height:1.5}
+:root{--g:#146c50;--gl:#e9f7f1;--ink:#15231e;--muted:#6b7772;--bg:#f5f7f6;--card:#fff;--line:#e4e9e6;--danger:#b42318;--shadow:0 10px 30px rgba(17,35,28,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--ink)}
+button,input,select{font:inherit}button{cursor:pointer;border:0}.app{min-height:100vh}.top{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:10}.brand{font-weight:800;font-size:21px;color:var(--g);display:flex;gap:9px;align-items:center}.logo{width:36px;height:36px;border-radius:11px;background:var(--g);color:#fff;display:grid;place-items:center}.wrap{max-width:1050px;margin:auto;padding:22px 16px 90px}.grid{display:grid;grid-template-columns:1.4fr .8fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}h1,h2,h3{margin:0 0 10px}.muted{color:var(--muted)}.hero{background:linear-gradient(135deg,#eaf8f2,#fff);border:1px solid #cfe9dd}.balance{font-size:36px;font-weight:850;margin:8px 0}.pill{display:inline-flex;padding:6px 10px;border-radius:99px;background:var(--gl);color:var(--g);font-size:12px;font-weight:700}.btn{padding:12px 16px;border-radius:12px;font-weight:750}.primary{background:var(--g);color:#fff}.secondary{background:#eef2f0;color:var(--ink)}.danger{background:#fff0ee;color:var(--danger)}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.tasks{display:grid;gap:10px}.task{border:1px solid var(--line);padding:14px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}.task h3{font-size:15px;margin-bottom:3px}.reward{font-weight:800;color:var(--g)}.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:16px}.tab{background:#fff;border:1px solid var(--line);padding:9px 13px;border-radius:10px;white-space:nowrap}.tab.active{background:var(--g);color:#fff;border-color:var(--g)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{padding:14px;border:1px solid var(--line);border-radius:14px}.stat b{font-size:20px;display:block}.list{display:grid;gap:8px}.history{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line)}.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;z-index:20}.navin{max-width:700px;width:100%;display:grid;grid-template-columns:repeat(4,1fr)}.nav button{padding:11px 5px;background:#fff;color:var(--muted)}.nav button.active{color:var(--g);font-weight:800}.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:16px;z-index:30}.modal.show{display:flex}.modalbox{background:#fff;border-radius:20px;padding:20px;max-width:460px;width:100%}.field{display:grid;gap:6px;margin:12px 0}.field input,.field select{padding:12px;border:1px solid var(--line);border-radius:10px;outline:none}.field input:focus{border-color:var(--g)}.toast{position:fixed;right:16px;bottom:78px;background:#17231e;color:#fff;padding:12px 15px;border-radius:12px;display:none;z-index:50}.admin{border-left:4px solid #d89b00}.hidden{display:none!important}@media(max-width:760px){.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:1fr 1fr}.top{padding:0 12px}.wrap{padding:16px 12px 88px}.task{align-items:flex-start}.task .btn{padding:9px 11px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><span class="logo">₹</span> EarnTask</div>
+  <button class="btn secondary" onclick="openLogin()" id="accountBtn">Login</button>
+</header>
+
+<main class="wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showPage('home',this)">Home</button>
+    <button class="tab" onclick="showPage('tasks',this)">Tasks</button>
+    <button class="tab" onclick="showPage('wallet',this)">Wallet</button>
+    <button class="tab" onclick="showPage('profile',this)">Profile</button>
+  </div>
+
+  <section id="home" class="page">
+    <div class="grid">
+      <div class="card hero">
+        <span class="pill">Genuine task rewards</span>
+        <h1 style="margin-top:12px">Earn by completing simple tasks.</h1>
+        <p class="muted">Complete available tasks, collect verified rewards and request withdrawals.</p>
+        <div class="balance">₹<span class="balanceVal">0.00</span></div>
+        <button class="btn primary" onclick="showPage('tasks',document.querySelectorAll('.tab')[1])">View Tasks</button>
+      </div>
+      <div class="card">
+        <h2>Your Activity</h2>
+        <div class="statgrid">
+          <div class="stat"><span class="muted">Tasks</span><b id="doneCount">0</b></div>
+          <div class="stat"><span class="muted">Earned</span><b>₹<span class="earnedVal">0.00</span></b></div>
+          <div class="stat"><span class="muted">Pending</span><b id="pendingVal">₹0</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="adbox"><span>ADVERTISEMENT</span><div>Ad space — connect your approved ad network here</div><small>Never pay users for clicking your own ads.</small></div>
+      <div class="row"><div><h2>Featured Tasks</h2><p class="muted">Start with these demo tasks.</p></div><button class="btn secondary" onclick="showPage('tasks',document.querySelectorAll('.tab')[1])">See all</button></div>
+      <div class="tasks" id="featured"></div>
+    </div>
+  </section>
+
+  <section id="tasks" class="page hidden">
+    <div class="card">
+      <h2>Available Tasks</h2><p class="muted">Demo tasks are included. Real ad/provider verification can be connected later.</p>
+      <div class="tasks" id="taskList"></div>
+    </div>
+  </section>
+
+  <section id="wallet" class="page hidden">
+    <div class="grid">
+      <div class="card">
+        <span class="pill">Available balance</span>
+        <div class="balance">₹<span class="balanceVal">0.00</span></div>
+        <button class="btn primary" onclick="openWithdraw()">Withdraw</button>
+      </div>
+      <div class="card">
+        <h2>Referral</h2><p class="muted">Invite friends with your code.</p>
+        <div class="row"><b id="refCode">EARN0000</b><button class="btn secondary" onclick="copyRef()">Copy</button></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px"><h2>Transaction History</h2><div class="list" id="history"></div><h3 style="margin-top:18px">Withdrawal Status</h3><div class="list" id="withdrawalHistory"></div></div>
+  </section>
+
+  <section id="profile" class="page hidden">
+    <div class="card">
+      <h2>Profile</h2><p class="muted" id="profileStatus">You are using demo mode.</p>
+      <div class="field"><label>Name</label><input id="pname" placeholder="Your name"></div>
+      <div class="field"><label>Email</label><input id="pemail" placeholder="you@example.com"></div>
+      <button class="btn primary" onclick="saveProfile()">Save Profile</button>
+      <button class="btn danger" onclick="resetDemo()" style="margin-left:6px">Reset Demo</button>
+    </div>
+    <div class="card admin" style="margin-top:18px">
+      <h2>Admin Preview</h2><p class="muted">For the prototype only. Admin can later be moved to a secure server-side dashboard.</p>
+      <button class="btn secondary" onclick="openAdmin()">Open Admin</button>
+    </div>
+  </section>
+
+  <section id="admin" class="page hidden">
+    <div class="card admin">
+      <div class="row"><div><h2>Admin Dashboard</h2><p class="muted">Prototype controls.</p></div><button class="btn secondary" onclick="showPage('profile',document.querySelectorAll('.tab')[3])">Back</button></div>
+      <div class="statgrid" style="margin-top:12px"><div class="stat"><span class="muted">Users</span><b>1</b></div><div class="stat"><span class="muted">Tasks</span><b id="adminTasks">5</b></div><div class="stat"><span class="muted">Payouts</span><b id="adminPayouts">0</b></div></div>
+      <h3 style="margin-top:20px">Create demo task</h3>
+      <div class="field"><label>Task title</label><input id="newTitle" placeholder="Watch a short video"></div>
+      <div class="field"><label>Reward (₹)</label><input id="newReward" type="number" min="1" value="5"></div>
+      <button class="btn primary" onclick="addTask()">Add Task</button>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div><b>EarnTask</b> · Genuine task rewards platform</div>
+  <div class="footerlinks">
+    <button onclick="openInfo('terms')">Terms</button>
+    <button onclick="openInfo('privacy')">Privacy</button>
+    <button onclick="openInfo('support')">Support</button>
+  </div>
+  <small>Prototype: real-money payouts, identity checks and ad-provider verification must be connected before public launch.</small>
+</footer>
+
+<nav class="nav"><div class="navin">
+  <button class="active" onclick="showPage('home',this)">⌂<br><small>Home</small></button>
+  <button onclick="showPage('tasks',this)">✓<br><small>Tasks</small></button>
+  <button onclick="showPage('wallet',this)">₹<br><small>Wallet</small></button>
+  <button onclick="showPage('profile',this)">●<br><small>Profile</small></button>
+</div></nav>
+
+<div class="modal" id="modal"><div class="modalbox" id="modalContent"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const API='';
+let token=localStorage.getItem('earntask_token')||''; let me=null; let tasks=[];
+const $=id=>document.getElementById(id); const money=n=>Number(n||0).toFixed(2);
+async function api(path,opts={}){opts.headers={...(opts.headers||{}),'Content-Type':'application/json'};if(token)opts.headers.Authorization='Bearer '+token;const r=await fetch(API+path,opts);const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'Request failed');return d}
+function toast(s){const x=$('toast');x.textContent=s;x.style.display='block';setTimeout(()=>x.style.display='none',2400)}
+function render(){const b=me?.balance||0;document.querySelectorAll('.balanceVal').forEach(x=>x.textContent=money(b));$('refCode').textContent=me?.referralCode||'—';$('pname').value=me?.name||'';$('pemail').value=me?.email||'';$('profileStatus').textContent=me?`Logged in as ${me.name}`:'Please login to use your wallet.';$('accountBtn').textContent=me?'Logout':'Login';}
+function taskHTML(t){return `<div class="task"><div><h3>${escapeHtml(t.title)}</h3><small class="muted">${escapeHtml(t.type||'Task')} • Server verified</small></div><div style="text-align:right"><div class="reward">+₹${money(t.reward)}</div><button class="btn primary" onclick="completeTask('${t.id}')">Start</button></div></div>`}
+function escapeHtml(x){return String(x).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+async function loadTasks(){try{tasks=(await api('/api/tasks')).tasks;$('taskList').innerHTML=tasks.map(taskHTML).join('');$('featured').innerHTML=tasks.slice(0,3).map(taskHTML).join('');$('adminTasks').textContent=tasks.length}catch(e){toast(e.message)}}
+async function completeTask(id){if(!me)return openLogin();try{const d=await api('/api/tasks/complete',{method:'POST',body:JSON.stringify({taskId:id})});me.balance=d.balance;render();await loadHistory();await loadWithdrawals();toast('₹'+money(tasks.find(t=>t.id===id)?.reward)+' wallet mein add hua');}catch(e){toast(e.message)}}
+async function loadWithdrawals(){if(!me)return;try{const d=await api('/api/withdrawals');const w=d.withdrawals||[];const box=document.getElementById('withdrawalHistory');if(box)box.innerHTML=w.length?w.map(x=>`<div class="history"><span>Withdrawal · ${escapeHtml(x.destination)}</span><b>₹${money(x.amount)} · ${escapeHtml(x.status)}</b></div>`).join(''):'<p class="muted">No withdrawals yet.</p>'}catch(e){toast(e.message)}}
+async function loadHistory(){if(!me){$('history').innerHTML='<p class="muted">Login to see transactions.</p>';return}try{const d=await api('/api/transactions');$('history').innerHTML=d.transactions.length?d.transactions.map(h=>`<div class="history"><span>${escapeHtml(h.type==='withdrawal'?'Withdrawal request':'Task reward')}<br><small class="muted">${new Date(h.createdAt).toLocaleString()}</small></span><b style="color:${h.amount>=0?'var(--g)':'var(--danger)'}">${h.amount>=0?'+':'-'}₹${money(Math.abs(h.amount))}</b></div>`).join(''):'<p class="muted">No transactions yet.</p>'}catch(e){toast(e.message)}}
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='wallet')loadHistory();window.scrollTo({top:0,behavior:'smooth'})}
+function openModal(c){$('modalContent').innerHTML=c;$('modal').classList.add('show')}function closeModal(){$('modal').classList.remove('show')}
+function openLogin(){if(me){if(confirm('Logout from this device?')){token='';me=null;localStorage.removeItem('earntask_token');render();loadHistory();toast('Logged out')}return}openModal(`<h2>Login</h2><div class="field"><label>Email</label><input id="authEmail" type="email"></div><div class="field"><label>Password</label><input id="authPassword" type="password"></div><div class="field"><label>Referral code (optional)</label><input id="authRef" placeholder="ETXXXXXXXX"></div><button class="btn primary" onclick="login()">Login</button><button class="btn secondary" onclick="register()" style="margin-left:6px">Create account</button><button class="btn secondary" onclick="closeModal()" style="margin-left:6px">Cancel</button>`)}
+async function login(){try{const d=await api('/api/login',{method:'POST',body:JSON.stringify({email:$('authEmail').value,password:$('authPassword').value})});token=d.token;localStorage.setItem('earntask_token',token);me=d.user;closeModal();render();loadHistory();toast('Login successful')}catch(e){toast(e.message)}}
+async function register(){try{const name=prompt('Your name');if(!name)return;const d=await api('/api/register',{method:'POST',body:JSON.stringify({name,email:$('authEmail').value,password:$('authPassword').value,referralCode:$('authRef').value})});token=d.token;localStorage.setItem('earntask_token',token);me=d.user;closeModal();render();toast('Account created')}catch(e){toast(e.message)}}
+function openWithdraw(){if(!me)return openLogin();openModal(`<h2>Request Withdrawal</h2><p class="muted">Minimum withdrawal: ₹100. Request will remain pending until admin/provider processes it.</p><p>Available: <b>₹${money(me.balance)}</b></p><div class="field"><label>UPI ID</label><input id="upi" placeholder="name@upi"></div><div class="field"><label>Amount</label><input id="amount" type="number" min="100" max="${money(me.balance)}" value="100"></div><button class="btn primary" onclick="withdraw()">Submit Request</button><button class="btn secondary" onclick="closeModal()" style="margin-left:6px">Cancel</button>`)}
+async function withdraw(){try{const d=await api('/api/withdrawals',{method:'POST',body:JSON.stringify({upiId:$('upi').value,amount:Number($('amount').value)})});me.balance=d.balance;render();closeModal();loadHistory();toast('Withdrawal request submitted')}catch(e){toast(e.message)}}
+function saveProfile(){toast('Profile name/email are managed from the registered account in this stage.')}
+function copyRef(){if(me?.referralCode)navigator.clipboard?.writeText(me.referralCode);toast(me?'Referral code copied':'Login first')}
+function openAdmin(){openModal(`<h2>Admin Access</h2><p class="muted">Use the server-side admin key. This is not a user password.</p><div class="field"><label>Admin key</label><input id="adminKey" type="password"></div><button class="btn primary" onclick="adminStats()">View stats</button><button class="btn secondary" onclick="closeModal()" style="margin-left:6px">Close</button>`)}
+async function adminStats(){try{const key=$('adminKey').value;const r=await fetch('/api/admin/stats',{headers:{'X-Admin-Key':key}});const d=await r.json();if(!r.ok)throw new Error(d.error||'Denied');$('adminTasks').textContent=d.tasks;$('adminPayouts').textContent=d.payouts;closeModal();showPage('admin');toast('Admin data loaded')}catch(e){toast(e.message)}}
+function addTask(){toast('Use the protected /api/admin/tasks endpoint from your admin tool in this stage.')}
+function openInfo(kind){const data={terms:['Terms of Use','Rewards are subject to verified task completion, provider rules and platform policies. No guaranteed income is promised.'],privacy:['Privacy Policy','Use HTTPS, secure authentication and collect only necessary information before production launch.'],support:['Support','Connect a real support email/WhatsApp before launch.']};const d=data[kind]||data.support;openModal(`<h2>${d[0]}</h2><p class="muted" style="line-height:1.6">${d[1]}</p><button class="btn secondary" onclick="closeModal()">Close</button>`)}
+$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+(async()=>{try{const d=await api('/api/me');me=d.user}catch{token='';localStorage.removeItem('earntask_token')}render();loadTasks();loadHistory()})();
+</script>
+</body>
+</html>
